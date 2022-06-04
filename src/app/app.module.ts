@@ -1,7 +1,7 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 // Highlight JS
 import { SplashScreenModule } from './_metronic/partials/layout/splash-screen/splash-screen.module';
 import { CurrencyModule } from './modules/currency/currency.module';
+import { GlobalInterceptor } from './utils/global-interceptor';
 
 
 // function appInitializer() {
@@ -37,6 +38,11 @@ import { CurrencyModule } from './modules/currency/currency.module';
     //   multi: true,
     //   deps: [],
     // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: GlobalInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent],
 })
