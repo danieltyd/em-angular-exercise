@@ -1,6 +1,6 @@
 <div id="currencies">
     <h1>Currencies</h1>
-    <div *ngIf="!isLoading" class="courrency-list-layout">
+    <div *ngIf="!isLoading" class="courrency-list-layout mt-5">
         <currency-format *ngFor="let currency of currencies" [currency]="currency" (sendDeletedCurrency)="getCurrenciesList()"> </currency-format>
     </div>
     <div *ngIf="isLoading">
@@ -15,6 +15,6 @@
             ></circle>
           </svg>
     </div>
-    <button mat-raised-button color="primary" class="mt-4"  [routerLink]="['/currency-manager']">Add Currency</button>
+    <button mat-raised-button color="primary" class="my-5"  [routerLink]="['/currency-manager']">Add Currency</button>
 </div>
   

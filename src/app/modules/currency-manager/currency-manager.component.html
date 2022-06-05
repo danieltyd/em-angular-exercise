@@ -6,7 +6,7 @@
 
 
 <h1 class="text-center mb-5">{{isNewCourrency ? 'New' : 'Update'}} Currency</h1>
-<div>
+<div class="currency-form-container">
   <form [formGroup]="currencyForm">
     <p>
       <mat-form-field appearance="outline" class="w-100">
@@ -40,7 +40,7 @@
     <p>
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Cents*:</mat-label>
-        <input matInput appOnlyNumbers placeholder="e.g: 2" formControlName="cents" type="number" min="0" max="9" maxlength="1">
+        <input matInput appOnlyNumbers placeholder="e.g: 2" formControlName="cents" type="tel" min="0" max="9" maxlength="1">
         <mat-error *ngIf="formatForm.get('cents').touched && formatForm.get('cents').invalid">
           Must be a value between 0 and 9
         </mat-error>

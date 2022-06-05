@@ -16,3 +16,13 @@
 .radio-button-outline ::ng-deep .mat-radio-label {
   margin: 6px 0;
 }
+
+.currency-form-container {
+  @media screen and (min-width: 768px) {
+    width: 50vw;
+    margin: 0 auto;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 20px;
+  }
+}

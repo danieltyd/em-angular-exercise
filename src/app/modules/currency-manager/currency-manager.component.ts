@@ -38,14 +38,16 @@ export class CurrencyManagerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initCurrencyForm();
     this.initFormatForm();
-    this.route.queryParams.subscribe(params => {
+    // An option if there was an endpoint to get a courrency data by Id
+    /* this.route.queryParams.subscribe(params => {
       console.log(params);
       if (params && params.currencyId) {
         this.isNewCourrency = false;
       }
-    });
+    }); */
     this.currencySelectedSubscriber = this.currencyCommunicationService.currentSelectedCurrency$.subscribe((currency: Currency) => {
       if (!currency) { return; }
+      this.isNewCourrency = false;
       this.initFormData(currency);
     });
   }
@@ -135,6 +137,9 @@ export class CurrencyManagerComponent implements OnInit, OnDestroy {
   showErrorAlert(){
     this.alertDanger.classList.remove('d-none');
     this.alertDanger.classList.add('show');
+    setTimeout(() => {
+      this.closeAlert();
+    }, 5000);
   }
 
   showSuccessAlert(){
