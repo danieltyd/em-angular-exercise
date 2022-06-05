@@ -1,0 +1,18 @@
+
+.radio-buttons-container {
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 10px 8px;
+  margin-bottom: 2rem;
+}
+.radio-button-outline {
+  border: 1px solid #E8E9EB;
+  padding: 0px 10px;
+  border-radius: 6px;
+}
+.radio-button-outline.mat-radio-checked{
+  border: 1px solid #673ab7 !important;
+}
+.radio-button-outline ::ng-deep .mat-radio-label {
+  margin: 6px 0;
+}

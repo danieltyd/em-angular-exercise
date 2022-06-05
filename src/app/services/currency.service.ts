@@ -4,18 +4,30 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class CurrencyApiService {
-	public readonly apiUrl = environment.apiUrl;
-    
-    constructor(public http: HttpClient) { }
+  public readonly apiUrl = environment.apiUrl;
 
-    getCurrencies() {
-        const url = this.apiUrl + `currency-format/`;
-    	return this.http.get(url).toPromise();
-    }
+  constructor(public http: HttpClient) { }
 
-    // --- Add the rest of your CRUD operations here ---
+  getCurrencies() {
+    const url = this.apiUrl + `currency-format/`;
+    return this.http.get(url).toPromise();
+  }
+
+  saveNewCurrency(currencyObj) {
+    const url = this.apiUrl + `currency-format/`;
+    return this.http.post(url, currencyObj).toPromise();
+  }
+
+  updateCurrencyData(currencyId,currencyObj){
+    const url = this.apiUrl + `currency-format/${currencyId}`;
+    return this.http.put(url, currencyObj).toPromise();
+  }
+  deleteCurrencyById(currencyId){
+    const url = this.apiUrl + `currency-format/${currencyId}`;
+    return this.http.delete(url).toPromise();
+  }
 
 }

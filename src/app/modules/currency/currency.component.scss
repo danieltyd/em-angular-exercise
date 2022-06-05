@@ -2,11 +2,9 @@
   height: 100%;
 }
 
-#currencies {
-  
-  .currency {
-    margin: 1em;
-    padding: 0.2em;
-  }
-
+.courrency-list-layout {
+  display: grid;
+  grid-auto-rows: 10rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 8px;
 }

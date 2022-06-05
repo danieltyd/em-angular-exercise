@@ -7,6 +7,8 @@ import { CurrencyFormat } from './currency-format/currency-format.component';
 import { PricePreview } from './price-preview/price-preview.component';
 import { CurrencyComponent } from './currency.component';
 import { CurrencyApiService } from 'src/app/services/currency.service';
+import { CommonMaterialLibModule } from 'src/app/common-material-lib/common-material-lib.module';
+import { CurrencyCommunicationService } from 'src/app/services/currency-communication.service';
 
 
 
@@ -30,6 +32,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    CommonMaterialLibModule
   ],
   exports: [
     RouterModule,
@@ -38,10 +41,11 @@ const routes: Routes = [
   declarations: [
       CurrencyComponent,
       CurrencyFormat,
-      PricePreview
+      PricePreview,
   ],
   providers: [
-    CurrencyApiService
+    CurrencyApiService,
+    CurrencyCommunicationService
   ]
 })
 export class CurrencyModule {}

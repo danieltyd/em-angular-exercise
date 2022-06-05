@@ -1,0 +1,84 @@
+
+<div *ngIf="isLoading" class="common-spinner-container">
+  <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" class="position-fixed common-spinner">
+  </mat-progress-spinner>
+</div>
+
+
+<h1 class="text-center mb-5">{{isNewCourrency ? 'New' : 'Update'}} Currency</h1>
+<div>
+  <form [formGroup]="currencyForm">
+    <p>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Country code*:</mat-label>
+        <input matInput apponlyletters placeholder="e.g: EC" formControlName="countryCode" maxlength="3" >
+        <mat-error *ngIf="currencyForm.get('countryCode').touched && currencyForm.get('countryCode').invalid">
+          Country code is required
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Currency code*:</mat-label>
+        <input matInput apponlyletters placeholder="e.g: USD" formControlName="currencyCode" maxlength="3">
+        <mat-error *ngIf="currencyForm.get('currencyCode').touched && currencyForm.get('currencyCode').invalid">
+          Currency code is required
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Language Iso code*:</mat-label>
+        <input matInput apponlyletters placeholder="e.g: es" formControlName="languageIsoCode" maxlength="3">
+        <mat-error *ngIf="currencyForm.get('languageIsoCode').touched && currencyForm.get('languageIsoCode').invalid">
+          Language Iso code is required
+        </mat-error>
+      </mat-form-field>
+    </p>
+  </form>
+  <form [formGroup]="formatForm">
+    <p>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Cents*:</mat-label>
+        <input matInput appOnlyNumbers placeholder="e.g: 2" formControlName="cents" type="number" min="0" max="9" maxlength="1">
+        <mat-error *ngIf="formatForm.get('cents').touched && formatForm.get('cents').invalid">
+          Must be a value between 0 and 9
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p class="d-flex justify-content-between align-items-center radio-buttons-container">
+      <mat-label>Use currency code:</mat-label>
+      <mat-slide-toggle formControlName="useCode" color="primary" labelPosition="before"></mat-slide-toggle>
+    </p>
+    <p class="d-flex flex-column radio-buttons-container">
+      <mat-label class="mb-2">Currency position:</mat-label>
+      <mat-radio-group aria-label="Select an option" formControlName="currencyPosition" color="primary">
+        <mat-radio-button [value]="currencyPosition.BEFORE.value" class="radio-button-outline mr-5">
+          {{currencyPosition.BEFORE.code}}</mat-radio-button>
+        <mat-radio-button [value]="currencyPosition.AFTER.value" class="radio-button-outline">
+          {{currencyPosition.AFTER.code}}</mat-radio-button>
+      </mat-radio-group>
+    </p>
+    <p class="d-flex flex-column radio-buttons-container">
+      <mat-label class="mb-2">Thousand identifier:</mat-label>
+      <mat-radio-group aria-label="Select an option" formControlName="thousandIdentifier" color="primary">
+        <mat-radio-button [value]="separatorAndIdentifier.COMMA.value" class="radio-button-outline mr-5">
+          {{separatorAndIdentifier.COMMA.code}} "{{separatorAndIdentifier.COMMA.value}}"</mat-radio-button>
+        <mat-radio-button [value]="separatorAndIdentifier.PERIOD.value" class="radio-button-outline">
+          {{separatorAndIdentifier.PERIOD.code}} "{{separatorAndIdentifier.PERIOD.value}}"</mat-radio-button>
+      </mat-radio-group>
+    </p>
+    <p class="d-flex flex-column radio-buttons-container">
+      <mat-label class="mb-2">Decimal separator:</mat-label>
+      <mat-radio-group aria-label="Select an option" formControlName="decimalSeparator" color="primary">
+        <mat-radio-button [value]="separatorAndIdentifier.COMMA.value" class="radio-button-outline mr-5">
+          {{separatorAndIdentifier.COMMA.code}} "{{separatorAndIdentifier.COMMA.value}}"</mat-radio-button>
+        <mat-radio-button [value]="separatorAndIdentifier.PERIOD.value" class="radio-button-outline">
+          {{separatorAndIdentifier.PERIOD.code}} "{{separatorAndIdentifier.PERIOD.value}}"</mat-radio-button>
+      </mat-radio-group>
+    </p>
+  </form>
+    <div class="d-flex justify-content-center mb-5">
+        <button mat-raised-button color="primary" [disabled]="currencyForm.invalid || formatForm.invalid" (click)="saveCurrency()">Save {{isNewCourrency ? 'currency' : 'changes'}}</button>
+    </div>
+</div>

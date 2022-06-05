@@ -1,8 +1,17 @@
-<div class="currency">
-    
-    <div class="d-flex align-items-center">
-        <h3>{{ currency.languageIsoCode }}-{{ currency.countryCode }}</h3> 
-        <h5>&ensp;({{ currency.currencyCode }})</h5>
+<div class="currency d-flex justify-content-between">
+    <div>
+        <div class="d-flex align-items-center">
+            <h3>{{ currency.languageIsoCode }}-{{ currency.countryCode }}</h3>
+            <h5>&ensp;({{ currency.currencyCode }})</h5>
+        </div>
+        <price-preview [format]="currency.format" [currencyData]="currency"></price-preview>
     </div>
-    <price-preview [format]="currency.format"></price-preview>
+    <div class="d-flex align-items-end">
+        <button mat-stroked-button color="primary" class="mr-2" aria-label="Example icon button with a home icon" (click)="updateCurrency(currency)">
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-stroked-button color="warn" aria-label="Example icon button with a menu icon" (click)="deleteCurrency(currency)">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
 </div>

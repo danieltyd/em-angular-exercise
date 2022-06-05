@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CurrencyManagerComponent } from '../modules/currency-manager/currency-manager.component';
 import { CurrencyComponent } from '../modules/currency/currency.component';
 import { RootComponent } from './root/root.component';
 
@@ -15,6 +16,14 @@ const routes: Routes = [
       {
         path: 'currency',
         component: CurrencyComponent
+      },
+      {
+        path: 'currency-manager',
+        component: CurrencyManagerComponent
+      },
+      {
+        path: 'currency-manager/:currencyId',
+        component: CurrencyManagerComponent
       },
       { path: '', redirectTo: 'currency', pathMatch: 'full' },
       {

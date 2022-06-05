@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { SplashScreenModule } from './_metronic/partials/layout/splash-screen/splash-screen.module';
 import { CurrencyModule } from './modules/currency/currency.module';
 import { GlobalInterceptor } from './utils/global-interceptor';
+import { CurrencyManagerModule } from './modules/currency-manager/currency-manager.module';
 
 
 // function appInitializer() {
@@ -29,7 +30,8 @@ import { GlobalInterceptor } from './utils/global-interceptor';
     HttpClientModule,
     AppRoutingModule,
     // NgbModule,
-    CurrencyModule
+    CurrencyModule,
+    CurrencyManagerModule,
   ],
   providers: [
     // {

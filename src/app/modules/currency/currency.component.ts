@@ -1,4 +1,4 @@
-import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CurrencyApiService } from 'src/app/services/currency.service';
 import { Currency } from './currency-format/currency-format.typings';
 
@@ -15,24 +15,28 @@ interface Response {
 export class CurrencyComponent implements OnInit {
 
   currencies: Currency[] = [];
-  isLoading: boolean = true;
+  isLoading: boolean;
 
-  constructor(private currencyService: CurrencyApiService, private ref: ChangeDetectorRef) { 
-    
+  constructor(private currencyService: CurrencyApiService, private ref: ChangeDetectorRef) {
+
   }
 
   ngOnInit(): void {
-    this.currencyService.getCurrencies().then((response: Response) => {
-        this.currencies = response.result;
-        
-        this.isLoading = false;
-        this.ref.detectChanges();
-    })
-    .catch((err) => { })
+    this.getCurrenciesList();
   }
 
-  addCurrency() {
-    // --- Add Currency button ---
+  getCurrenciesList() {
+    this.isLoading = true;
+    this.currencyService.getCurrencies().then((response: Response) => {
+      this.currencies = response.result;
+
+      this.isLoading = false;
+      this.ref.detectChanges();
+    })
+      .catch((err) => {
+        console.log('err ', err);
+        this.isLoading = false;
+      })
   }
 
 }
